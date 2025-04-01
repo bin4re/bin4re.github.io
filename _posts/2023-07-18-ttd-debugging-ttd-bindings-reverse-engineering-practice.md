@@ -18,9 +18,7 @@ tags:
 
 更新：2025-03-31
 
-# 前言
-
-在上篇文章[《对一个apk协议的继续分析—libsgmain反混淆与逆向》](https://bbs.kanxue.com/thread-277665.htm)中的调试 trace 一节，我提到了微软的 TTD，即 Time Travel Debugging ，还放了[沈沉舟](https://scz.617.cn/windows/202201251528.txt)和[krash](https://bbs.kanxue.com/thread-273055.htm)两位前辈的文章。
+在上篇文章《对一个apk协议的继续分析—libsgmain反混淆与逆向》中的调试 trace 一节，我提到了微软的 TTD，即 Time Travel Debugging ，还放了[沈沉舟](https://scz.617.cn/windows/202201251528.txt)和[krash](https://bbs.kanxue.com/thread-273055.htm)两位前辈的文章。
 
 什么是 TTD 呢，按[官网的介绍](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview)来说，TTD 是一款用户级进程的 trace 录制工具，录制完成后可以在调试器中向前向后重放，不需要再重新运行程序就能让你的调试器状态回退，并且还能分享你的 trace 文件给别人，从方方面面帮助你更快更轻松找到 bug。
 
@@ -33,6 +31,11 @@ tags:
 回答之后沈沉舟前辈又提出了一个升级版的问题：
 
 > 假设已有run文件，如何在几分钟内定位四则运算的汇编指令所在。这类问题的答案最终都将演变成生产力工具。
+
+
+
+
+
 
 因为我对沈沉舟前辈一些文章十分熟悉了，一看到这个升级版的问题，便知道解答方向正是[《TTD调试进阶之ttd-bindings》](https://scz.617.cn/windows/202207271620.txt)一文所讲的 ttd-bindings。
 

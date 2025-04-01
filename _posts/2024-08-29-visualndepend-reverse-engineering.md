@@ -14,19 +14,23 @@ tags:
 * content
 {:toc}
 
-# 背景介绍
+
 搜 .Net Assembly Diff 工具时候，在 StackOverflow 一个回答中了解到 NDepend 工具，可以试用 14 天，试了下 diff 效果还不错，别的功能也很丰富，下载到的版本是 2024.1.1.9735。
+
 ```
 .NET Assembly Diff / Compare Tool - What's available? [closed]
 https://stackoverflow.com/questions/1280252/net-assembly-diff-compare-tool-whats-available
 ```
 
-# 激活流程
 将程序断网后点击 Start Evaluation 会进入 NDepend manual server access 流程，自动生成了 Date Request text，到网站可以获取到 Data Response text，输入后即可激活。
 
 ![](/assets/images/2024-08-29/1.png)
 
 程序联网的话，应该是后台直接发起请求验证结果完成激活，对程序断网可以方便分析，并且程序会随时联网发送消息，比如 patch 造成或修改授权造成的运行异常报告，还是给断了好。
+
+
+
+
 
 # 展开分析
 14 天后，打开 dnspy 开始看下，大部分函数名、变量名、字符串都被混淆了，程序流程还是好的。注意有弹窗，试着断在 MessageBox.Show，运行断下来了，看下调用堆栈回溯，可以以此展开调试分析。

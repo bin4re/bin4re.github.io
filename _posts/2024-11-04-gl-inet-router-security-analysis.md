@@ -17,13 +17,16 @@ tags:
 
 更新：2024-11-18
 
-# 前言
-
-前段时间看到复现分析 GL-iNet 路由器 CVE-2024-39226 漏洞的两篇文章[[原创]GL-iNet路由器 CVE-2024-39226 漏洞分析](https://bbs.kanxue.com/thread-283585.htm) ，[CVE-2024-39226 GL-iNet 路由器RPC漏洞复现](https://www.iotsec-zone.com/article/477)，看完也跟着了分析下，固件仿真过程踩了一些坑，开始我直接用 Ubuntu24 的 qemu-system-arm 跟着操作都会出现错误“Cortex-A9MPCore peripheral can only use Cortex-A9 CPU”，摸索了挺久发现文章用的都是 debian_wheezy_armhf 来仿真，但太老了以至于直接跑 GL-iNet 固件会出现 Illegal instruction 的错误，就使用 Ubuntu18 安装的低版本 qemu-system-arm，能绕过来指定仿真开发板非支持的 cpu，[qemu 在高版本中修复了这个问题](https://lists.gnu.org/archive/html/qemu-devel/2020-07/msg03297.html)，就出现了新些版本 Ubuntu 安装的 qemu-system-arm 启动报错问题。
+前段时间看到复现分析 GL-iNet 路由器 CVE-2024-39226 漏洞的两篇文章([1](https://bbs.kanxue.com/thread-283585.htm) ，[2](https://www.iotsec-zone.com/article/477))，看完也跟着了分析下，固件仿真过程踩了一些坑，开始我直接用 Ubuntu24 的 qemu-system-arm 跟着操作都会出现错误“Cortex-A9MPCore peripheral can only use Cortex-A9 CPU”，摸索了挺久发现文章用的都是 debian_wheezy_armhf 来仿真，但太老了以至于直接跑 GL-iNet 固件会出现 Illegal instruction 的错误，就使用 Ubuntu18 安装的低版本 qemu-system-arm，能绕过来指定仿真开发板非支持的 cpu，qemu 在高版本中修复了这个[问题](https://lists.gnu.org/archive/html/qemu-devel/2020-07/msg03297.html)，就出现了新些版本 Ubuntu 安装的 qemu-system-arm 启动报错问题。
 
 ![](/assets/images/2024-11-04/1.png) 
 
-后面琢磨了下，用低版本 qemu-system-arm 来绕过不算是好方法，试了试换个高版本内核镜像仿真就行了，可以花些时间自己制作一个，我是直接用开箱即用制作好的( https://people.debian.org/~gio/dqib/ 中的 armhf-virt )，根据自己的复现环境的网络配置改一下说明中的启动命令即可。
+
+
+
+
+
+后面琢磨了下，用低版本 qemu-system-arm 来绕过不算是好方法，试了试换个高版本内核镜像仿真就行了，可以花些时间自己制作一个，我是直接用开箱即用[制作好的](https://people.debian.org/~gio/dqib/)(网站中的armhf-virt)，根据自己的复现环境的网络配置改一下说明中的启动命令即可。
 
 ![](/assets/images/2024-11-04/2.png) 
 
