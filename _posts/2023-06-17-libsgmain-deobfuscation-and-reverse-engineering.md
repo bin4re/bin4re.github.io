@@ -2,8 +2,7 @@
 author: 0x指纹
 date: 2023-06-17 00:00+08:00
 layout: post
-title: "libsgmain反混淆与逆向"
-description: ""
+title: "libsgmain 反混淆与逆向"
 mathjax: true
 categories:
 - 逆向工程

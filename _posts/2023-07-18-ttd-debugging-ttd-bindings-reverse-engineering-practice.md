@@ -2,8 +2,7 @@
 author: 0x指纹
 date: 2023-07-18 00:00+08:00
 layout: post
-title: "TTD调试与ttd-bindings逆向工程实践"
-description: ""
+title: "TTD 调试与 ttd-bindings 逆向工程实践"
 mathjax: true
 categories:
 - 逆向工程
