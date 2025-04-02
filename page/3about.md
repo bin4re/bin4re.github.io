@@ -13,8 +13,6 @@ type: page
 
 * bin4re - 0x指纹
 
-* bin4re@foxmail.com
-
 * [看雪论坛主页](https://bbs.kanxue.com/homepage-thread-802108-1.htm)
 
 * [微博主页](https://weibo.com/u/5845952017)
