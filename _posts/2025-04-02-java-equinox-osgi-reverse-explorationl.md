@@ -27,7 +27,7 @@ tags:
 
 根据这些问题，我进行了一番搜索，发现互联网上关于 Equinox OSGi 应用的逆向资料几乎没有，只有一些开发的文档记录。最后自己进行了一些探索和尝试，实现了通过 OGSi Bundle 注入的方案，来动态加载目标 jar 包所有 class，随后便可通过 HSDB 转储下来，算是间接地获取到了核心加密 jar 的内容。
 
-随后我还不死心，同时也是在好奇心的驱动下，想找到软件应用是怎么没有通过 Java agent、JVMTI agent和自定义 ClassLoader 加载实现的解密，还是说我漏了哪里？最后经过两天枯燥无味、接近阶地毯式对方方面面的搜寻，终于从一次尝试的蛛丝马迹中，找到了这个 Java Equinox OSGi 应用解密 class 的现场，并不意外的是，实现方式也一样和 Equinox OSGi 框架的有关。
+随后我还不死心，同时也是在好奇心的驱动下，想找到软件应用是怎么没有通过 Java agent、JVMIT agent和自定义 ClassLoader 加载实现的解密，还是说我漏了哪里？最后经过两天枯燥无味、接近阶地毯式对方方面面的搜寻，终于从一次尝试的蛛丝马迹中，找到了这个 Java Equinox OSGi 应用解密 class 的现场，并不意外的是，实现方式也一样和 Equinox OSGi 框架的有关。
 
 这篇文章便是记录下此次艰辛的逆向探索，为互联网这方面逆向几乎没有什么资料的领域，补充一些内容。 
 
@@ -372,4 +372,4 @@ Eclipse 文档中有对 [Adaptor Hooks](https://wiki.eclipse.org/Adaptor_Hooks) 
 
 # 总结
 
-本文记录了笔者对遇到的一款 Java Equinox OSGi 应用的逆向工程探索，提供了两种获取加密 Bundle 的 class 内容的方案，最终确定这款软件并没有使用常规的 Java Class 解密实现（Java agent、JVMTI agent和自定义 ClassLoader 解密），而是利用了 Equinox OSGi 框架提供的 ClassLoaderHook 机制实现了解密，互联网上相关文章资料很少，这篇文章提供了一个相关的补充参考。
+本文记录了笔者对遇到的一款 Java Equinox OSGi 应用的逆向工程探索，提供了两种获取加密 Bundle 的 class 内容的方案，最终确定这款软件并没有使用常规的 Java Class 解密实现（Java agent、JVMIT agent和自定义 ClassLoader 解密），而是利用了 Equinox OSGi 框架提供的 ClassLoaderHook 机制实现了解密，互联网上相关文章资料很少，这篇文章提供了一个相关的补充参考。
