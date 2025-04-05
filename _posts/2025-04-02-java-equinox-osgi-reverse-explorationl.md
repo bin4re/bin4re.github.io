@@ -273,7 +273,7 @@ public class BundleFileTransformer implements ClassFileTransformer {
 
 转储出来初始化使用的核心加密 Bundle 文件，经对比是和本地一致，即没有在初始化之前被别的什么代码给解密。
 
-以及后面整理了下使用 javassit 生成 Java agent 的 [IDEA 示例模板代码](https://github.com/bin4re/HookEquinoxAgent)，想尝试下的话可以直接基于这个修改，省去些配置功夫，以前没玩过记得生成 jar 包要通过 Maven 栏->生存期->Package 来编译生成。
+后面整理了下使用 javassit 生成 Java agent 的 [IDEA 示例模板代码](https://github.com/bin4re/HookEquinoxAgent)，想尝试下的话可以直接基于这个修改，省去些配置功夫，以前没玩过记得生成 jar 包要通过 Maven 栏->生存期->Package 来编译生成。
 
 ## Arthas
 
