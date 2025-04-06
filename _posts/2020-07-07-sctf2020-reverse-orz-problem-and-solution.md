@@ -1,6 +1,6 @@
 ---
 author: 0x指纹
-date: 2020-07-07 00:00+08:00
+date: 2020-07-07 08:00+08:00
 layout: post
 title: "SCTF2020 逆向出题与解题思路"
 mathjax: true

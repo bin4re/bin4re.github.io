@@ -1,6 +1,6 @@
 ---
 author: 0x指纹
-date: 2023-07-18 00:00+08:00
+date: 2023-07-18 08:00+08:00
 layout: post
 title: "TTD 调试与 ttd-bindings 逆向工程实践"
 mathjax: true
