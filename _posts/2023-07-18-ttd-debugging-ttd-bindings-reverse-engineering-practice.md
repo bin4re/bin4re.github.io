@@ -7,9 +7,9 @@ mathjax: true
 categories:
 - 逆向工程
 tags:
-- debugger
 - windbg
 - ttd
+- debug
 ---
 
 * content

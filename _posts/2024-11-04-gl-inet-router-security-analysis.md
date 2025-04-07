@@ -9,6 +9,8 @@ categories:
 tags:
 - iot
 - router
+- firware
+- simulate
 ---
 
 * content

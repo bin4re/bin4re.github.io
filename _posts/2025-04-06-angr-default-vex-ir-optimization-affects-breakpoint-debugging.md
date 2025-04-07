@@ -8,7 +8,8 @@ categories:
 - 踩坑记录
 tags:
 - angr
-- debugger
+- debug
+- simulate
 ---
 
 * content
