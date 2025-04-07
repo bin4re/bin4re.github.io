@@ -11,13 +11,17 @@ type: page
 
 # Info
 
-* bin4re - 0x指纹
+* 0x指纹 - bin4re
+
+* bin4re@foxmail.com
 
 # Community
 
-* [看雪论坛主页](https://bbs.kanxue.com/homepage-thread-802108-1.htm)
+* [Github](https://github.com/bin4re)
 
-* [微博主页](https://weibo.com/u/5845952017)
+* [微博](https://weibo.com/u/5845952017)
+
+* [看雪论坛](https://bbs.kanxue.com/homepage-thread-802108-1.htm)
 
 
 
