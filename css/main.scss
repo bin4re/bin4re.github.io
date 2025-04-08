@@ -7,4 +7,4 @@
  * variables
  */
 // Import partials from `sass_dir` (defaults to `_sass`)
-@use "reset" as * ; @use  "header" as * ; @use  "post" as * ; @use  "page" as * ; @use  "syntax-highlighting" as * ; @use  "index" as * ; @use  "demo" as * ; @use  "footer" as * ; @use  "scrollbar" as * ; @use  "backToTop";
+@import "reset", "header", "post", "page", "syntax-highlighting", "index", "demo", "footer", "scrollbar", "backToTop";
