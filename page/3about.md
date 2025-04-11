@@ -9,8 +9,6 @@ type: page
 * content
 {:toc}
 
-# Info
-
 * 0x指纹 - bin4re
 
 * bin4re@foxmail.com
