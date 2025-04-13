@@ -1,3 +1,4 @@
 # allow google
 User-agent: *
 Allow: /
+Sitemap: https://bin4re.github.io/sitemap.xml
