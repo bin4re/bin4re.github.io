@@ -22,8 +22,8 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-# port
-# port: 1234
+google_analytics:
+  id: G-793NCMX18C
 
 # url
 category_dir: category/
