@@ -22,8 +22,7 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-google_analytics:
-  id: G-793NCMX18C
+google_analytics_id: G-793NCMX18C
 
 # url
 category_dir: category/
