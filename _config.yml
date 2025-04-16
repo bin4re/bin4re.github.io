@@ -9,7 +9,7 @@
 title: 0x指纹的博客
 brief-intro: Reverse Engineering & Security
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bin4re.github.io" # the base hostname & protocol for your site
+url: "https://blog.bin4re.com" # the base hostname & protocol for your site
 
 permalink: blog/:year/:month/:day/:title/
 
