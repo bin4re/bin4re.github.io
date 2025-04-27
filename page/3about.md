@@ -13,6 +13,9 @@ type: page
 
 * bin4re@foxmail.com
 
+# CVE
+* [GL-iNet - CVE-2024-57391](https://www.gl-inet.com/security-updates/security-advisories-vulnerabilities-and-cves-apr-24-2025/)
+
 # Community
 
 * [Github](https://github.com/bin4re)
