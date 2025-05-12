@@ -1,1 +1,1 @@
-bin4re's blog - https://blog.bin4re.com/
+bin4re's blog - https://bin4re.github.io/
