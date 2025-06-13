@@ -17,7 +17,7 @@ tags:
 {:toc}
 
 
-之前分析一款 .net 软件，使用 dnspy 打开一些可执行文件后，发现方法都无法被正常反编译，经对壳代码一些字样进行分析和搜索后，判断是加了德国一保护软件的 .NET JIT 壳，把函数的方法体指令即 ILCode 都给抽取走了，会在运行时进行解密提供使用。
+之前分析一款 .net 软件，使用 dnspy 打开一些可执行文件后，发现方法都无法被正常反编译，经对壳代码一些字样进行分析和搜索后，判断是加了德国一款保护软件的 .NET JIT 壳，把函数的方法体指令即 ILCode 都给抽取走了，会在运行时进行解密提供使用。
 
 接着我开始琢磨怎么还原，搜索到 wwh1004 前辈的分析文章《[.NET JIT脱壳指南与工具源码](https://wwh1004.com/net-jit-unpack-guide-and-source/)》 和相应的开源项目 [JitUnpacker-Framework](https://github.com/wwh1004/JitUnpacker-Framework)，但经过简单尝试后发现并不能解决我碰到的保护壳类型。
 
@@ -142,7 +142,7 @@ typedef struct CORINFO_METHOD_STRUCT_*      CORINFO_METHOD_HANDLE;
 
 ![](/assets/images/2025-06-12/10.png)
 
-那么问题就来了，如何确定一个方法体的局部变量签名数据流结束位置呢，我翻了下 `JitUnpacker-Framework` 的项目源码，发现是模拟进行了反序列化的操作来通过 `Sig` 指针确定的。
+那么问题就来了，如何确定一个方法体的局部变量签名数据流结束位置呢，我翻了下 JitUnpacker-Framework 的项目源码，发现是模拟进行了反序列化的操作来通过 `Sig` 指针确定的。
 ![](/assets/images/2025-06-12/11.png)
 
 可以看到 `MethodDumperBase.cs` 中的 `WalkType` 方法对十几种 .NET 类型进行了解析操作。
@@ -203,7 +203,7 @@ Windbg TTD 的使用可以看我之前的文章[《TTD 调试与 ttd-bindings �
 
 在 Windbg 中执行命令 `lm`，可以看到 clrjit.dll 文件符号所在的位置 `C:\ProgramData\Dbg\sym\clrjit.pdb\97077D9E2E3C48B29B28B6E5E35FEC932\clrjit.pdb`，这是我自己系统 .NET Framework 4.8+ 的 JIT 引擎文件，想确定系统 Framework 具体版本的话，可以进 `C:\Windows\Microsoft.NET\Framework\v4.0.xxxxx` 目录执行命令 `MSBuild -version` 查看。
 
-在使用 `JitUnpacker-Framework` 工具进行对壳修复时候，就需要检查下自己系统的 .NET Framework 4.8 以下，否则在执行 `RuntimeFunctionConfigGenerator.bat` 会报错获取符号偏移失败。经过我测试，虚拟机里面启用 Windows 1803 版本，自带的是 .NET Framework 4.7.3+ 的版本，也是可以正常获取到符号偏移进行脱壳修复的。 
+在使用 JitUnpacker-Framework 工具进行对壳修复时候，就需要检查下自己系统的 .NET Framework 4.8 以下，否则在执行 `RuntimeFunctionConfigGenerator.bat` 会报错获取符号偏移失败。经过我测试，虚拟机里面启用 Windows 1803 版本，自带的是 .NET Framework 4.7.3+ 的版本，也是可以正常获取到符号偏移进行脱壳修复的。 
 
 ```
 PS C:\Windows\Microsoft.NET\Framework\v4.0.30319> .\MSBuild -version
@@ -421,3 +421,8 @@ try
 本文记录了笔者使用 Windbg TTD 还原 .NET JIT 保护壳的探索过程，提出了使用 Windbg 针对 JITUnpacker-Framework 不支持的 .NET Framework 4.8+ 版本 JIT 保护进行恢复还原的方案，相比之下会更为灵活一些，需要使用者手动定位分析一些内容。
 
 以及Windbg TTD 录制程序应该是向进程注入了记录器 dll 随后像 Pin 一样进行动态二进制插桩记录，如果没有针对性检测的话，常见的反调试手段都会失效，所以有时候如果目标程序的反调试检测比较严格的话，试一下 Windbg TTD 方案可能会有意想不到的效果。
+
+
+附件内容:
+- [JitExtractor.js](https://bin4re.github.io/assets/repos/2025-06-12/JitExtractor.js)
+- [JitPatcher.cs](https://bin4re.github.io/assets/repos/2025-06-12/JitPatcher.cs)
