@@ -196,11 +196,14 @@ Windbg TTD 的使用可以看我之前的文章[《TTD 调试与 ttd-bindings �
 
 最后所有恢复方法需要的信息输出到一个 Json 文件中，再使用 .NET C# 写一个项目加载目标被加壳保护文件和此 Json 文件，参考 JitUnpacker-Framework 借助 dnlib 进行修复还原。
 
+
 ## 调试过程
 
 现在我们根据上面的分析，来具体看下怎么进行断点调试和分析，执行一遍单次调试定位提取恢复方法需要的信息。
 
 在 Windbg 中执行命令 `lm`，可以看到 clrjit.dll 文件符号所在的位置 `C:\ProgramData\Dbg\sym\clrjit.pdb\97077D9E2E3C48B29B28B6E5E35FEC932\clrjit.pdb`，这是我自己系统 .NET Framework 4.8+ 的 JIT 引擎文件，想确定系统 Framework 具体版本的话，可以进 `C:\Windows\Microsoft.NET\Framework\v4.0.xxxxx` 目录执行命令 `MSBuild -version` 查看。
+
+在使用 `JitUnpacker-Framework` 工具进行对壳修复时候，就需要检查下自己系统的 .NET Framework 4.8 以下，否则在执行 `RuntimeFunctionConfigGenerator.bat` 会报错获取符号偏移失败。经过我测试，虚拟机里面启用 Windows 1803 版本，自带的是 .NET Framework 4.7.3+ 的版本，也是可以正常获取到符号偏移进行脱壳修复的。 
 
 ```
 PS C:\Windows\Microsoft.NET\Framework\v4.0.30319> .\MSBuild -version
@@ -221,9 +224,10 @@ Microsoft(R) 生成引擎版本 4.8.9037.0
 
 ![](/assets/images/2025-06-12/18.png)
 
+
 ## JS 自动化提取信息
 
-写 `Windbg Javascript` 脚本来进行自动化上面的过程，除了阅读[官方文档](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/javascript-debugger-scripting)，还可以参考 [WinDbg JavaScript Scripts](https://github.com/hugsy/windbg_js_scripts) 项目仓库中丰富的实现，这里简单介绍下我实现的一些辅助工具代码。
+写 `Windbg Javascript` 脚本来进行自动化上面的过程，除了阅读[官方文档](https://learn.microsoft.com/en-us/windows-hardware/drivers/debugger/javascript-debugger-scripting)，还可以参考 [WinDbg JavaScript Scripts](https://github.com/hugsy/windbg_js_scripts) 项目仓库中丰富的实现。这里简单介绍下我实现的一些辅助工具代码，完整的实现可以下载附件查看，使用 Windbg 调试也可以先跟着里面的命令走一遍。
 
 先定义一个 Windbg 类里面包含常用交互方法，包括日志输出、命令执行和内存与寄存器值获取。
 
@@ -370,7 +374,8 @@ matchType: (可选) "contains" (默认), "exact", "startsWith", "endsWith"
 
 获取到方法信息后就简单多了，先写一些用于 Json 文件内容反序列化的结构类型，再读取 Json 文件后进行反序列化。
 
-```C#
+``` c#
+
 public class JitDumpInfo
 {
     public List<ModuleDumpInfo> ModulesInfo { get; set; }
@@ -406,9 +411,13 @@ try
     string jsonData = File.ReadAllText(jsonDataPath);
     jitDumpInfo = JsonSerializer.Deserialize<JitDumpInfo>(jsonData, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 }
+
 ```
 
-之后就是参考 `JitUnacpker-Framework` 项目借助强大的 `dnlib` 库进行修复了。
+之后就是参考 [JitUnpacker-Framework](https://github.com/wwh1004/JitUnpacker-Framework) 项目借助强大的 `dnlib` 库进行修复了，主要部分的实现逻辑可见附件代码。
 
 # 总结
 
+本文记录了笔者使用 Windbg TTD 还原 .NET JIT 保护壳的探索过程，提出了使用 Windbg 针对 JITUnpacker-Framework 不支持的 .NET Framework 4.8+ 版本 JIT 保护进行恢复还原的方案，相比之下会更为灵活一些，需要使用者手动定位分析一些内容。
+
+以及Windbg TTD 录制程序应该是向进程注入了记录器 dll 随后像 Pin 一样进行动态二进制插桩记录，如果没有针对性检测的话，常见的反调试手段都会失效，所以有时候如果目标程序的反调试检测比较严格的话，试一下 Windbg TTD 方案可能会有意想不到的效果。
