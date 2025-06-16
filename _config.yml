@@ -32,7 +32,6 @@ tag_dir: tag/
 excerpt_separator: "\n\n\n\n"
 
 # paginate
-gems: [jekyll-paginate]
 paginate: 10
 
 plugins:

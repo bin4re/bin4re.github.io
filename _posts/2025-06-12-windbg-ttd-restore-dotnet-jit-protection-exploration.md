@@ -21,7 +21,7 @@ tags:
 
 接着我开始琢磨怎么还原，搜索到 wwh1004 前辈的分析文章《[.NET JIT脱壳指南与工具源码](https://wwh1004.com/net-jit-unpack-guide-and-source/)》 和相应的开源项目 [JitUnpacker-Framework](https://github.com/wwh1004/JitUnpacker-Framework)，但经过简单尝试后发现并不能解决我碰到的保护壳类型。
 
-主要因为该保护程序有着较为复杂的保护模块和运行逻辑，无法简单地通过项目工具对单个 .net 可执行文件进行加载解析所有方法，再通过 MethodDesc::DoPrestub 主动调用获取还原需要的信息，因为保护程序模块还没启动起来，其次哪怕能模拟启动起来了，还有一堆检查反调试在等着呢。比如经测试，如果直接调试或者 frida 注入会被检测到，保护程序的授权会立马被注销掉，软件也无法正常运行启动了。
+主要因为该保护程序有着较为复杂的保护模块和运行逻辑，无法简单地通过项目工具对单个 .net 可执行文件进行加载解析所有方法，再通过 `MethodDesc::DoPrestub` 主动调用获取还原需要的信息，因为保护程序模块还没启动起来，其次哪怕能模拟启动起来了，还有一堆检查反调试在等着呢。比如经测试，如果直接调试或者 frida 注入会被检测到，保护程序的授权会立马被注销掉，软件也无法正常运行启动了。
 
 其次的话 JitUnpacker-Framework 项目工具是六年前发布的，支持范围是 .NET 2.0~4.72，.NET 4.8+ 的版本是没有进行适配的。而现在新版 Windows 系统几乎默认安装高版本 4.8+ 的 Framework，并跟随 Windows 系统进行更新升级，可以兼容执行 .NET 4.0+ 的程序，无疑给工具带来不少局限性。
 
@@ -426,3 +426,6 @@ try
 附件内容:
 - [JitExtractor.js](https://bin4re.github.io/assets/repos/2025-06-12/JitExtractor.js)
 - [JitPatcher.cs](https://bin4re.github.io/assets/repos/2025-06-12/JitPatcher.cs)
+
+
+[https://github.com/bin4re/WindbgTtdJitPatcher](https://github.com/bin4re/WindbgTtdJitPatcher)
