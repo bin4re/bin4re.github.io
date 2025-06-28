@@ -5,7 +5,7 @@ layout: post
 title: "LiteSQL 在 Windows11 系统启动服务失败"
 mathjax: true
 categories:
-- 运维杂项
+- 杂项记录
 tags:
 - sqlserver
 - database

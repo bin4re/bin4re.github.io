@@ -5,7 +5,7 @@ layout: post
 title: "Angr 默认 vex ir 优化影响断点调试"
 mathjax: true
 categories:
-- 踩坑记录
+- 杂项记录
 tags:
 - angr
 - debug
