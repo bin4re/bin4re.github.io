@@ -1,1 +1,3 @@
 bin4re's blog - https://bin4re.github.io/
+
+测试的话运行jekyll serve，可在本地http://127.0.0.1:4000/ 查看网站效果，但_site目录中的sitemap.xml里面域名也是本地，删除目录下的sitemap.xml，再执行jekyll build即正确，可拖出去复制再推送。
