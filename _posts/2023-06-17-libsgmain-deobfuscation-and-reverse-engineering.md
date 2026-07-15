@@ -11,8 +11,6 @@ tags:
 - simulate
 ---
 
-* content
-{:toc}
 
 事情是这样的，两三年前在看雪论坛看到一篇帖子[《对一个apk的协议分析》](https://bbs.kanxue.com/thread-258114.htm)，作者 yezheyu 要分析的签名算法是apk调用阿里安全组件 libsgmainso-5.4.56.so 中安全签名类 SecuritySignature 的 sign 方法，虽然最后没有还原算法，但 yezheyu 把十分详尽的分析过程写在了帖子中，提供了十分多的参考价值。
 

@@ -9,8 +9,6 @@ tags:
 - .net
 ---
 
-* content
-{:toc}
 
 
 搜 .Net Assembly Diff 工具时候，在 StackOverflow 一个回答中了解到 NDepend 工具，可以试用 14 天，试了下 diff 效果还不错，别的功能也很丰富，下载到的版本是 2024.1.1.9735。

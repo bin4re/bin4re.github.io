@@ -81,3 +81,17 @@
         }
     }
 }
+.page[post].no-toc {
+    .right {
+        display: none;
+    }
+    .anchor {
+        display: none;
+    }
+    .left {
+        float: none;
+        width: 100%;
+        max-width: 820px;
+        margin: 0 auto;
+    }
+}

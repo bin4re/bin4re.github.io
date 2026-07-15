@@ -127,40 +127,79 @@ function setContentMaxHeight() {
 //-------------post Content----------------------
 //将Content内容转移
 function moveTOC() {
-    if (document.querySelector('#markdown-toc') !== null) {
-        var TOCString = document.querySelector('#markdown-toc').innerHTML
-        var contentUl = document.querySelector('#content-side')
-        contentUl.insertAdjacentHTML('afterbegin', TOCString) //插入字符串
+    var page = document.querySelector('.page[post]')
+    if (!page) return //非文章页（archives/category/tags 等列表页）不处理
 
-        // if (!isAndroidWechatBrowser()) {
+    var contentUl = document.querySelector('#content-side')
+    if (!contentUl) return
 
-            //添加scroll样式，为了平滑滚动
-            //add class "scroll", for smooth scroll
-            var aTags = document.querySelectorAll('#content-side a')
+    var container = document.querySelector('article')
+    var headings = container ? container.querySelectorAll('h1, h2, h3, h4, h5, h6') : []
 
-            //add class for everyone
-            // aTags.forEach(function () {
-            //     console.log(this);
-            // })
-            for (var i = 0; i < aTags.length; i++) {
-                // if (!aTags[i].classList.contains('scroll')) {
-                //     aTags[i].classList.add('scroll')
-                // }
-                if (!aTags[i].hasAttribute('data-scroll')) {
-                  aTags[i].setAttribute('data-scroll','');
-                }
+    if (headings.length === 0) {
+        //无标题：隐藏右侧目录栏，正文居中限宽（由 .no-toc 样式控制）
+        page.classList.add('no-toc')
+        return
+    }
 
-            }
-        // }
+    //为缺少 id 的标题补上 id（Kramdown 通常已自动生成）
+    for (var i = 0; i < headings.length; i++) {
+        if (!headings[i].id) {
+            headings[i].id = 'toc-' + (i + 1)
+        }
+    }
 
+    var html = buildTOC(headings)
+    contentUl.insertAdjacentHTML('afterbegin', html)
+
+    //添加 data-scroll，为了平滑滚动
+    var aTags = document.querySelectorAll('#content-side a')
+    for (var i = 0; i < aTags.length; i++) {
+        if (!aTags[i].hasAttribute('data-scroll')) {
+            aTags[i].setAttribute('data-scroll', '')
+        }
     }
 }
 
-/**
- * 判断安卓版微信浏览器
- * @return {Boolean} [description]
- */
-function isAndroidWechatBrowser() {
-    var ua = navigator.userAgent.toLowerCase()
-    return /micromessenger/.test(ua) && /android/.test(ua2)
+//根据标题级别构建嵌套 <ul><li> 目录结构
+function buildTOC(headings) {
+    var levels = []
+    for (var i = 0; i < headings.length; i++) {
+        levels.push(parseInt(headings[i].tagName.charAt(1), 10))
+    }
+    var minLevel = Math.min.apply(null, levels)
+    var prevLevel = minLevel
+    var html = ''
+
+    for (var i = 0; i < headings.length; i++) {
+        var lvl = levels[i]
+        var id = headings[i].id
+        var text = escapeHTML((headings[i].textContent || '').trim())
+
+        if (i === 0) {
+            html += '<li><a href="#' + id + '" data-scroll>' + text + '</a>'
+        } else if (lvl === prevLevel) {
+            html += '</li><li><a href="#' + id + '" data-scroll>' + text + '</a>'
+        } else if (lvl > prevLevel) {
+            for (var k = prevLevel; k < lvl; k++) html += '<ul><li>'
+            html += '<a href="#' + id + '" data-scroll>' + text + '</a>'
+        } else {
+            html += '</li>'
+            for (var k = lvl; k < prevLevel; k++) html += '</ul></li>'
+            html += '<li><a href="#' + id + '" data-scroll>' + text + '</a>'
+        }
+        prevLevel = lvl
+    }
+
+    html += '</li>'
+    for (var k = minLevel; k < prevLevel; k++) html += '</ul></li>'
+    return html
+}
+
+function escapeHTML(str) {
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
 }

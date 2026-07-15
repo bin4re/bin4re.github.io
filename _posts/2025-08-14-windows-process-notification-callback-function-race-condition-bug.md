@@ -12,8 +12,6 @@ tags:
 - bug
 ---
 
-* content
-{:toc}
 
 前段时间在一个群里有群友说自己写的 Windows 内核驱动老是莫名蓝屏，不盯着就很突然来一下，看崩溃调用栈，显示错误在使用 `PsSetCreateProcessNotifyRoutineEx` 注册的进程通知回调函数 `CreateNotifyRoutine` 中，指向 `ExFreePoolWithTag(Msg, msg_tag)` 一句，但他使用内核校验器和调试了很久都没排查到哪里有问题。
 
@@ -121,6 +119,7 @@ namespace Process_Monior {
 1. 使用局部变量替代静态变量， `Msg` 和 `Msg_Size` 定义在 `CreateNotifyRoutine` 函数中。
 
 2. 使用同步机制，比如可以加个快速互斥锁
+
 ```c
 namespace Process_Monior {
     FAST_MUTEX msg_fast_mutex;  // 声明快速互斥体

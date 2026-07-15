@@ -10,8 +10,6 @@ tags:
 - sony
 ---
 
-* content
-{:toc}
 
 四哥推荐了 [Andrea Corbellini 的椭圆曲线加密算法科普系列文章](https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/)后，在<[椭圆曲线加密算法科普系列的作业](https://scz.617.cn/misc/202312081417.txt)>和<[椭圆曲线加密算法之Sony惨案模拟题](https://scz.617.cn/misc/202312111609.txt)>文章中各出了一些作业题目，我花了些时间进行了解答并回复，这里记录一下。
 

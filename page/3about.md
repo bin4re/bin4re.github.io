@@ -6,8 +6,6 @@ icon: user
 type: page
 ---
 
-* content
-{:toc}
 
 * 0x指纹 - bin4re
 

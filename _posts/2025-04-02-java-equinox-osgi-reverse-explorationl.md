@@ -11,8 +11,6 @@ tags:
 - osgi
 ---
 
-* content
-{:toc}
 
 前段时间分析一个使用 Equinox OSGi 框架开发的 Java 桌面 win 应用软件，文件数据结构很是庞杂，有着层层的目录，光 plugins files 目录下的 osgi bundle jar 包都有近 500 个。分析时候发现几个核心 jar 包被加密了，可以看到 class 文件魔数由 CAFEBABE 变为了 CAFEBEBA。本想按常规的 Java 应用逆向思路去找 Java agent、native agent 或者是自定义 ClassLoader 动态解密 class 文件，可以说毫无踪迹、一点影子都没有。
 
