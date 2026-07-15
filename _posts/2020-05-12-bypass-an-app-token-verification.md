@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2020-05-12 08:00+08:00
 layout: post
 title: "对抗一款 App 的 token 验证"
-mathjax: true
 categories:
 - 逆向工程
 tags:

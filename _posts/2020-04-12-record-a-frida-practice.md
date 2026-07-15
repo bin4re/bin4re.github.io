@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2020-04-12 08:00+08:00
 layout: post
 title: "记一次 frida 实战"
-mathjax: true
 categories:
 - 逆向工程
 tags:

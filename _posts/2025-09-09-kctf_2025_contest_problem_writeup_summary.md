@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2025-09-09 08:00+08:00
 layout: post
 title: "KCTF 2025 参赛 Writeup 分析汇总"
-mathjax: true
 categories:
 - 竞技比赛
 tags:

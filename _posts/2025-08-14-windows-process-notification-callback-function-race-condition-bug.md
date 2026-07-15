@@ -3,7 +3,6 @@ author: 0x指纹
 date: 25-08-14 08:00+08:00
 layout: post
 title: "Windows 内核驱动进程通知回调函数的竟态 Bug"
-mathjax: true
 categories:
 - 杂项记录
 tags:

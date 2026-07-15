@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2026-06-08 08:00+08:00
 layout: post
 title: "我的幽兰本 Hermes 部署与使用体验"
-mathjax: true
 categories:
 - 杂项记录
 tags:
@@ -13,8 +12,7 @@ tags:
 - ubuntu
 ---
 
-* content
-{:toc}
+
 
 两周前，因为看到一些技术品味比较好的朋友从 OpenClaw 迁移到 Hermes 上，我也动了心思，开始拿幽兰本折腾下 Hermes 了。在折腾的第一天，就很兴奋地在张银奎老师的兰友微信群里分享一些使用过程和体验，向同样有着幽兰本的群友们展示这个新鲜事物。
 

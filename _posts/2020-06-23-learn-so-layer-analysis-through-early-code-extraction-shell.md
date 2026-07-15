@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2020-06-23 08:00+08:00
 layout: post
 title: "通过一款早期代码抽取壳入门学习 so 层分析"
-mathjax: true
 categories:
 - 逆向工程
 tags:

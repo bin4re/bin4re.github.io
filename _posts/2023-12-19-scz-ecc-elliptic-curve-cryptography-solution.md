@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2023-12-19 08:00+08:00
 layout: post
 title: "沈沉舟 ECC 椭圆曲线加密作业题目解答"
-mathjax: true
 categories:
 - 密码技术
 tags:

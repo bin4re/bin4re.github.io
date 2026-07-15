@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2025-06-12 08:00+08:00
 layout: post
 title: "Windbg TTD 还原 .NET JIT 保护壳探索"
-mathjax: true
 categories:
 - 逆向工程
 tags:

@@ -3,7 +3,6 @@ author: 0x指纹
 date: 2024-08-29 08:00+08:00
 layout: post
 title: "VisualNDepend 逆向工程"
-mathjax: true
 categories:
 - 逆向工程
 tags:
